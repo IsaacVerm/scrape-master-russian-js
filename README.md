@@ -1,4 +1,4 @@
-# Scrape Master Russian
+# Scrape Master Russian JS
 
 ## Run
 
