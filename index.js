@@ -1,8 +1,8 @@
 const puppeteer = require('puppeteer');
 
 (async () => {
-    // const browser = await puppeteer.launch()
-    const browser = await puppeteer.launch({ headless: false })
+    const browser = await puppeteer.launch()
+    // const browser = await puppeteer.launch({ headless: false })
 
     const page = await browser.newPage()
 
@@ -14,10 +14,16 @@ const puppeteer = require('puppeteer');
 
     await page.goto(link)
 
-    const russianPhrases = await page.evaluate(() => {
-        return [...document.querySelectorAll('.phrase_plain .first')].map(element => element.innerText)
+    const phrases = await page.evaluate(() => {
+        const russian = [...document.querySelectorAll('.phrase_plain .first')].map(element => element.innerText)
+        const english = [...document.querySelectorAll('.phrase_plain .first + li')].map(element => element.innerText)
+        return russian.map((a, i) => {
+            return { "russian": a, "english": english[i] }
+        })
     })
-    
+
+    console.log(phrases)
+
 
     await browser.close()
 })()
