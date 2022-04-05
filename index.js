@@ -7,5 +7,9 @@ const puppeteer = require('puppeteer');
 
     await page.goto('http://masterrussian.com/vocabulary/most_common_words.htm')
 
+    const link = await page.evaluate(() => {
+        return document.querySelector('.word > a').getAttribute('href')
+    })
+
     await browser.close()
 })()
