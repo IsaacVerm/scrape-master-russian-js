@@ -28,7 +28,7 @@ const fs = require('fs');
         })
 
         phrases.forEach(phrase => {
-            writeStream.write(`${phrase.english}, ${phrase.russian}\n`)
+            writeStream.write(`"${phrase.english}", "${phrase.russian}"\n`)
         })
     }
 
